@@ -1,56 +1,51 @@
-const fs = require("fs");
+var inquirer = require("inquirer");
+var fs = require('fs');
 
-const inquirer = require("inquirer");
-
-// inquirer
-//   .prompt({
-//     message: "",
-//     name: "username"
-//   })
-  
-
+inquirer.prompt([
+    {
+        type: "input",
+        name: "name",
+        message: "What is your name?"
+    },
+    {
+        type: "checkbox",
+        message: "Select what type of user you are:",
+        name: "stack",
+        choices: [
+            "Employee",
+            "Manager",
+            "Engineer",
+            "Intern"
+        ]
+    },
+    {
+        type: "input",
+        name: "id",
+        message: "What is your id?"
+    },
+    {
+        type: "input",
+        name: "title",
+        message: "What is your title?"
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "What is your email?"
+    },
     
+    
+]).then(function (data) {
 
-// fs.writeFile("repos.txt", repoNamesStr, function (err) {
-//     if (err) {
-//         throw err;
-//     }
+    var filename = data.name.toLowerCase().split(' ').join('') + ".json";
 
-//     console.log(`Saved ${repoNames.length} repos`);
-// });
+    fs.writeFile(filename, JSON.stringify(data, null, '\t'), function (err) {
 
-
-
-
-//CREATE FIRST CLASS//
-
-// The first class is an `Employee` parent class with the following properties and methods://
-// * name
-//     * id
-//     * title
-//     * getName()
-//     * getId()
-//     * getEmail()
-//     * getRole() // Returns 'Employee'
-//     * 
-
-    class Employee {
-        // Just like constructor functions, classes can accept arguments
-        constructor(id, title, getName, getId, getEmail, getRole) {
-            this.id = id;
-            this.title = title;
-            this.getName = getName;
-            this.getId = getId;
-            this.getEmail = getEmail;
-            this.getRole = getRole;
+        if (err) {
+            return console.log(err);
         }
 
-        printInfo() {
-            console.log(`Area: ${this.area}`);
-            console.log(`Perimeter: ${this.perimeter}`);
-        }
-    }
+        console.log("Success!");
 
-const shape = new Shape(25, 25);
-
-shape.printInfo();
+    });
+});

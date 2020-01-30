@@ -1,6 +1,7 @@
 # TeamProfileGenerator
 
-live link here: https://marksirany.github.io/TeamProfileGenerator/
+![userinput pic](./indexscreen.gif)
+![userinput pic](./indexscreen2.gif)
 
 # Unit 10 OOP Homework: Template Engine - Employee Summary
 
